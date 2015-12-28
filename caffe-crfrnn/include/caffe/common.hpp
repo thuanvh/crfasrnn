@@ -4,7 +4,12 @@
 #include <boost/shared_ptr.hpp>
 #include <gflags/gflags.h>
 #include <glog/logging.h>
+#include <wincompat.h>
+#include <map>
+#include <set>
+#include <string>
 
+#include <climits>
 #include <cmath>
 #include <fstream>  // NOLINT(readability/streams)
 #include <iostream>  // NOLINT(readability/streams)
@@ -18,7 +23,7 @@
 #include "caffe/util/device_alternate.hpp"
 
 // gflags 2.1 issue: namespace google was changed to gflags without warning.
-// Luckily we will be able to use GFLAGS_GFAGS_H_ to detect if it is version
+// Luckily we will be able to use GFLAGS_GFLAGS_H_ to detect if it is version
 // 2.1. If yes, we will add a temporary solution to redirect the namespace.
 // TODO(Yangqing): Once gflags solves the problem in a more elegant way, let's
 // remove the following hack.
@@ -32,11 +37,32 @@ private:\
   classname(const classname&);\
   classname& operator=(const classname&)
 
+
+#ifdef EXP_CAFFE
+#define CAFFE_DLL_EXPORT __declspec(dllexport)
+#define EXTERN_DLL_EXPORT extern "C" __declspec(dllexport) 
+#define EXPIMP_TEMPLATE
+#elif IMP_CAFFE
+#define CAFFE_DLL_EXPORT __declspec(dllimport)
+#define EXTERN_DLL_EXPORT extern 
+#define EXPIMP_TEMPLATE extern
+#else
+#define CAFFE_DLL_EXPORT
+#define EXTERN_DLL_EXPORT
+#define EXPIMP_TEMPLATE
+#endif
+
+#define EXTERN_INSTANCE_CLASS(classname) \
+  extern template class CAFFE_DLL_EXPORT classname<float>; \
+  extern template class CAFFE_DLL_EXPORT classname<double>
+
+//EXTERN_INSTANCE_CLASS(NeuronLayer);
+
 // Instantiate a class with float and double specifications.
 #define INSTANTIATE_CLASS(classname) \
   char gInstantiationGuard##classname; \
-  template class classname<float>; \
-  template class classname<double>
+  template class CAFFE_DLL_EXPORT classname<float>; \
+  template class CAFFE_DLL_EXPORT classname<double>
 
 #define INSTANTIATE_LAYER_GPU_FORWARD(classname) \
   template void classname<float>::Forward_gpu( \
@@ -73,8 +99,18 @@ using boost::shared_ptr;
 // Common functions and classes from std that caffe often uses.
 using std::fstream;
 using std::ios;
+#ifdef WIN32
+#include <math.h>
+#define isnan(x) _isnan(x)
+#define isinf(x) (!_finite(x))
+#define fpu_error(x) (isinf(x) || isnan(x))
+#undef round
+//#define round(x) static_cast<int>((x)+0.5)
+
+#else
 using std::isnan;
 using std::isinf;
+#endif
 using std::iterator;
 using std::make_pair;
 using std::map;
@@ -87,11 +123,11 @@ using std::vector;
 
 // A global initialization function that you should call in your main function.
 // Currently it initializes google flags and google logging.
-void GlobalInit(int* pargc, char*** pargv);
+void CAFFE_DLL_EXPORT GlobalInit(int* pargc, char*** pargv);
 
 // A singleton class to hold common caffe stuff, such as the handler that
 // caffe is going to use for cublas, curand, etc.
-class Caffe {
+class CAFFE_DLL_EXPORT Caffe {
  public:
   ~Caffe();
   inline static Caffe& Get() {

@@ -141,8 +141,10 @@ void BaseConvolutionLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
   // overly large memory usage. In the special case of 1x1 convolution
   // it goes lazily unused to save memory.
   if (reverse_dimensions()) {
+    //LOG(INFO) << "Col_buffer_size:" << kernel_dim_ << " * " << height_ << " * " << width_;
     col_buffer_.Reshape(1, kernel_dim_, height_, width_);
   } else {
+    //LOG(INFO) << "Col_buffer_size:" << kernel_dim_ << " * " << height_out_ << " * " << height_out_;
     col_buffer_.Reshape(1, kernel_dim_, height_out_, width_out_);
   }
   // Set up the all ones "bias multiplier" for adding biases by BLAS
