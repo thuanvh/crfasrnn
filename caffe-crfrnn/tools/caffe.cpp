@@ -83,10 +83,10 @@ int train() {
   CHECK(!FLAGS_snapshot.size() || !FLAGS_weights.size())
       << "Give a snapshot to resume training or weights to finetune "
       "but not both.";
-
+  //std::cout << FLAGS_solver << std::endl;
   caffe::SolverParameter solver_param;
   caffe::ReadProtoFromTextFileOrDie(FLAGS_solver, &solver_param);
-  //caffe::ReadProtoFromTextFileOrDie("solver.prototxt", &solver_param);
+  //caffe::ReadProtoFromTextFileOrDie("solver_gpu.prototxt", &solver_param);
 
   // If the gpu flag is not provided, allow the mode and device to be set
   // in the solver prototxt.
