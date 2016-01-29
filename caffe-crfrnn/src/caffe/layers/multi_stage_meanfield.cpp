@@ -18,6 +18,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/util/im2col.hpp"
 #include "caffe/vision_layers.hpp"
+#include <opencv2/opencv.hpp>
 
 namespace caffe {
 
@@ -154,7 +155,26 @@ void MultiStageMeanfieldLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom
 	// Do nothing.
 }
 
-
+namespace{
+void Blob2Mat(const float* blob, int channels, int height, int width, cv::Mat & mat)
+{
+  //int size = (int)sqrt(blob_size / 3.0f);
+  int area = height * width;
+  std::vector<cv::Mat> mat_vec(channels);
+  for (int i = 0; i < channels; ++i)
+  {
+    const float* ptr = blob + i * area;
+    mat_vec[i] = cv::Mat(height, width, CV_32FC1);
+    float* m_ptr = mat_vec[i].ptr<float>();
+    memcpy(m_ptr, ptr, area*sizeof(float));
+    //caffe::caffe_copy(area, ptr, m_ptr);
+    cv::Mat display = mat_vec[i];
+    display.convertTo(display, CV_8UC1, 128, 128);
+    cv::imwrite("output" + std::to_string(i) + ".jpg", display);
+  }
+  cv::merge(mat_vec, mat);
+}
+}
 /**
  * Performs filter-based mean field inference given the image and unaries.
  *
@@ -167,6 +187,10 @@ void MultiStageMeanfieldLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom
 template <typename Dtype>
 void MultiStageMeanfieldLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top) {
+  cv::Mat mat;
+  //Blob2Mat((float*)bottom[0]->cpu_data(), 2, 250, 250, mat);
+  //Blob2Mat((float*)bottom[1]->cpu_data(), 2, 250, 250, mat);
+  //Blob2Mat((float*)bottom[2]->cpu_data(), 3, 250, 250, mat);
 
   split_layer_bottom_vec_[0] = bottom[0];
   split_layer_->Forward(split_layer_bottom_vec_, split_layer_top_vec_);

@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "caffecu", "caffecu.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "caffe_cuda", "..\caffe_cuda\caffe_cuda.vcxproj", "{962EBEF6-1265-4971-B298-089C6E465765}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "semanticsegment", "semanticsegment.vcxproj", "{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{962EBEF6-1265-4971-B298-089C6E465765}.Release|x64.Build.0 = Release|x64
 		{962EBEF6-1265-4971-B298-089C6E465765}.Release|x86.ActiveCfg = Release|Win32
 		{962EBEF6-1265-4971-B298-089C6E465765}.Release|x86.Build.0 = Release|Win32
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Debug|x64.ActiveCfg = Debug|x64
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Debug|x64.Build.0 = Debug|x64
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Debug|x86.ActiveCfg = Debug|Win32
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Debug|x86.Build.0 = Debug|Win32
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Release|x64.ActiveCfg = Release|x64
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Release|x64.Build.0 = Release|x64
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Release|x86.ActiveCfg = Release|Win32
+		{51AED5B2-7017-4896-A2C0-A21F38F4B6E2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

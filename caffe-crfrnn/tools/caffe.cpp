@@ -17,21 +17,21 @@ using caffe::vector;
 
 
 DEFINE_int32(gpu, -1,
-    "Run in GPU mode on given device ID.");
+  "Run in GPU mode on given device ID.");
 DEFINE_string(solver, "",
-    "The solver definition protocol buffer text file.");
+  "The solver definition protocol buffer text file.");
 DEFINE_string(model, "",
-    "The model definition protocol buffer text file..");
+  "The model definition protocol buffer text file..");
 DEFINE_string(snapshot, "",
-    "Optional; the snapshot solver state to resume training.");
+  "Optional; the snapshot solver state to resume training.");
 DEFINE_string(weights, "",
-    "Optional; the pretrained weights to initialize finetuning. "
-    "Cannot be set simultaneously with snapshot.");
+  "Optional; the pretrained weights to initialize finetuning. "
+  "Cannot be set simultaneously with snapshot.");
 DEFINE_int32(iterations, 50,
-    "The number of iterations to run.");
+  "The number of iterations to run.");
 
 // A simple registry for caffe commands.
-typedef int (*BrewFunction)();
+typedef int(*BrewFunction)();
 typedef std::map<caffe::string, BrewFunction> BrewMap;
 BrewMap g_brew_map;
 
@@ -49,10 +49,11 @@ __Registerer_##func g_registerer_##func; \
 static BrewFunction GetBrewFunction(const caffe::string& name) {
   if (g_brew_map.count(name)) {
     return g_brew_map[name];
-  } else {
+  }
+  else {
     LOG(ERROR) << "Available caffe actions:";
     for (BrewMap::iterator it = g_brew_map.begin();
-         it != g_brew_map.end(); ++it) {
+    it != g_brew_map.end(); ++it) {
       LOG(ERROR) << "\t" << it->first;
     }
     LOG(FATAL) << "Unknown action: " << name;
@@ -60,6 +61,85 @@ static BrewFunction GetBrewFunction(const caffe::string& name) {
   }
 }
 
+cv::Mat upsample_filt(int size)
+{
+  int factor = (size + 1) / 2;
+  float center = 0;
+  if (size % 2 == 1)
+    center = factor - 1;
+  else
+    center = factor - 0.5f;
+  cv::Mat a(size, 1, CV_32FC1);
+  for (int i = 0; i < size; ++i)
+    a.at<float>(i, 0) = i;
+  a = abs(a - center);
+  a *= 1.0f / factor;
+  a = 1 - a;
+  a = a * a.t();
+  return a;
+}
+
+void print_mat(const cv::Mat& filt)
+{
+  for (int y = 0; y < filt.rows; ++y) {
+    for (int x = 0; x < filt.cols; ++x)
+      std::cout << filt.at<float>(y, x) << ", ";
+    std::cout << std::endl;
+  }
+}
+void repeat_data(const float* filt_data, float* data, shared_ptr<Blob<float> >& blob)
+{
+  int size = blob->height() * blob->width();
+  /*for (int i = 0; i < blob->num(); ++i)
+    for (int j = 0; j < blob->channels();++j, data += size)
+      caffe::caffe_copy<float>(size, filt_data, data);*/
+
+  for (int i = 0; i < blob->num(); ++i)
+  {
+    data += (i * blob->channels() + i) * size;
+    caffe::caffe_copy<float>(size, filt_data, data);
+  }
+}
+void copy_mat2blob(const cv::Mat& filt, shared_ptr<Blob<float> >& blob)
+{
+  float* data = NULL;
+  
+  {
+    data = blob->mutable_cpu_data();
+    const float* filt_data = filt.ptr<float>();
+    repeat_data(filt_data, data, blob);
+  }
+  if (Caffe::mode() == Caffe::GPU)
+  {
+    data = blob->mutable_gpu_data();
+    const float* filt_data = filt.ptr<float>();
+    repeat_data(filt_data, data, blob);
+  }  
+}
+
+void interp_surgery(shared_ptr<Net<float>>& net)
+{
+  std::vector<std::string> layernames{ "up","score2","score4" };
+  for (auto layer : net->layers())
+  {
+    std::string layer_name = layer->layer_param().name();
+    for (size_t i = 0; i < layernames.size(); i++)
+    {
+      if (layer_name.substr(0, layernames[i].length()) == layernames[i])
+      {
+        if (layer->blobs().size() > 0)
+        {
+          LOG(INFO) << "Initialize deconvolution layer " << layer_name;
+          auto blob = layer->blobs()[0];
+          CHECK_EQ(blob->num(), blob->channels()) << "input + output channels need to be the same";
+          CHECK_EQ(blob->height(), blob->width()) << "filters need to be square";
+          cv::Mat filt = upsample_filt(blob->height());
+          copy_mat2blob(filt, blob);
+        }
+      }
+    }
+  }  
+}
 // caffe commands to call by
 //     caffe <command> <args>
 //
@@ -85,8 +165,8 @@ int train() {
       "but not both.";
   //std::cout << FLAGS_solver << std::endl;
   caffe::SolverParameter solver_param;
-  caffe::ReadProtoFromTextFileOrDie(FLAGS_solver, &solver_param);
-  //caffe::ReadProtoFromTextFileOrDie("solver_gpu.prototxt", &solver_param);
+  //caffe::ReadProtoFromTextFileOrDie(FLAGS_solver, &solver_param);
+  caffe::ReadProtoFromTextFileOrDie("solver.prototxt", &solver_param);
 
   // If the gpu flag is not provided, allow the mode and device to be set
   // in the solver prototxt.
@@ -108,6 +188,8 @@ int train() {
   LOG(INFO) << "Starting Optimization";
   shared_ptr<caffe::Solver<float> >
     solver(caffe::GetSolver<float>(solver_param));
+
+  interp_surgery(solver->net());
 
   if (FLAGS_snapshot.size()) {
     LOG(INFO) << "Resuming from " << FLAGS_snapshot;
@@ -284,6 +366,16 @@ int time() {
 RegisterBrewFunction(time);
 
 int main(int argc, char** argv) {
+  cv::Mat filt = upsample_filt(1);
+  print_mat(filt);
+  filt = upsample_filt(2);
+  print_mat(filt);
+  filt = upsample_filt(3);
+  print_mat(filt);
+  filt = upsample_filt(4);
+  print_mat(filt);
+  filt = upsample_filt(5);
+  print_mat(filt);
   // Print output to stderr (while still logging).
   //FLAGS_alsologtostderr = 1;
   // Usage message.

@@ -14,7 +14,7 @@ public:
   void SetMode(int mode);
   void SetDevice(int device);
   //std::vector<float> Regression(const cv::Mat& src, const std::vector<float>& values);
-  std::vector<float> Regression(const cv::Mat& src, float scale = 1 / 255.0f, const std::string& blob_name = "");
+  std::vector<float> Regression(const cv::Mat& src, const std::string& blob_name = "");
 
   static void Train(const std::string& netconfig, const std::string& netresult = NULL, bool finetune_net = false);
   void InitNet(const std::string& input);

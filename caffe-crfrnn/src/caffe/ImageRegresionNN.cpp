@@ -21,15 +21,13 @@ ImageRegresionNN::~ImageRegresionNN(void)
 //  return ret;
 //}
 
-std::vector<float> ImageRegresionNN::Regression(const cv::Mat& src, float scale, const std::string& blob_name)
+std::vector<float> ImageRegresionNN::Regression(const cv::Mat& input, const std::string& blob_name)
 {
   std::vector<float> ret;
   Caffe::set_phase(Caffe::TEST);
 
   Net<float>* net = ((Net<float>*)(m_Net));
 
-  cv::Mat input;
-  src.convertTo(input, CV_32FC3, scale);
   const shared_ptr<ImageFeatureDataLayer<float> > image_data_layer =
     boost::static_pointer_cast<ImageFeatureDataLayer<float> >(
     net->layer_by_name("input"));

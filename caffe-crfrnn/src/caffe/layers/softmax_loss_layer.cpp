@@ -5,7 +5,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
-
+#include <opencv2/opencv.hpp>
 namespace caffe {
 
 template <typename Dtype>
@@ -37,9 +37,30 @@ void SoftmaxWithLossLayer<Dtype>::Reshape(
   }
 }
 
+void Blob2Mat2(const float* blob, int channels, int height, int width, cv::Mat & mat)
+{
+  //int size = (int)sqrt(blob_size / 3.0f);
+  int area = height * width;
+  std::vector<cv::Mat> mat_vec(channels);
+  for (int i = 0; i < channels; ++i)
+  {
+    const float* ptr = blob + i * area;
+    mat_vec[i] = cv::Mat(height, width, CV_32FC1);
+    float* m_ptr = mat_vec[i].ptr<float>();
+    memcpy(m_ptr, ptr, area*sizeof(float));
+    //caffe::caffe_copy(area, ptr, m_ptr);
+    cv::Mat display = mat_vec[i];
+    display.convertTo(display, CV_8UC1, 128, 128);
+    cv::imwrite("output" + std::to_string(i) + ".jpg", display);
+  }
+  cv::merge(mat_vec, mat);
+}
 template <typename Dtype>
 void SoftmaxWithLossLayer<Dtype>::Forward_cpu(
     const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) {
+  cv::Mat mat;
+  //Blob2Mat2((float*)bottom[0]->cpu_data(), 2, 250, 250, mat);
+  //Blob2Mat2((float*)bottom[1]->cpu_data(), 1, 250, 250, mat);
   // The forward pass computes the softmax prob values.
   softmax_layer_->Forward(softmax_bottom_vec_, softmax_top_vec_);
   const Dtype* prob_data = prob_.cpu_data();
@@ -49,6 +70,7 @@ void SoftmaxWithLossLayer<Dtype>::Forward_cpu(
   int spatial_dim = prob_.height() * prob_.width();
   int count = 0;
   Dtype loss = 0;
+  //Blob2Mat2((float*)prob_.cpu_data(), 2, 250, 250, mat);
   for (int i = 0; i < num; ++i) {
     for (int j = 0; j < spatial_dim; j++) {
       const int label_value = static_cast<int>(label[i * spatial_dim + j]);

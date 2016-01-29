@@ -1,4 +1,4 @@
-net: "train_val_gpu.prototxt"
+net: "train_val.prototxt"
 test_iter: 5105
 # make test net, but don't invoke it from the solver itself
 test_interval: 1000000
@@ -13,7 +13,7 @@ momentum: 0.99
 iter_size: 1
 max_iter: 80000
 weight_decay: 0.0005
-snapshot: 2000
+snapshot: 500
 snapshot_prefix: "train_250"
 test_initialization: false
 solver_mode: GPU

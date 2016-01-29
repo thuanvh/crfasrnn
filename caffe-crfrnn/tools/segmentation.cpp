@@ -1,9 +1,9 @@
-#include "caffe\ImageRegresionNN.h"
+#include "caffe\segmentlib.h"
 #include <opencv2/opencv.hpp>
 #include <list>
 //#include "caffe\caffe.hpp"
 #include <windows.h>
-
+#define _TIME_LOG_
 cv::Mat MatScaleExtend(const cv::Mat& mat, const cv::Size& size, int border_type, const cv::Scalar& value, cv::Rect& rect_region)
 {
   cv::Mat resize_mat;
@@ -34,6 +34,9 @@ void Blob2Mat(const float* blob, int channels, int height, int width, cv::Mat & 
     float* m_ptr = mat_vec[i].ptr<float>();
     memcpy(m_ptr, ptr, area*sizeof(float));
     //caffe::caffe_copy(area, ptr, m_ptr);
+    cv::Mat display = mat_vec[i];
+    display.convertTo(display, CV_8UC1, 128, 128);
+    imwrite("output" + std::to_string(i) + ".jpg", display);
   }
   cv::merge(mat_vec, mat);
 }
@@ -157,26 +160,44 @@ int main(int argc, char** argv)
 
   std::string command = argv[1];
 
-  ImageRegresionNN regress;
-  regress.LoadNet(argv[2], argv[3]);
+  SemanticSegment segment;
+  segment.Initialize(argv[2], argv[3]);
 
   int width = atoi(argv[4]);
   int height = atoi(argv[5]);
   int class_num = atoi(argv[6]);
+  segment.SetClassNumber(class_num);
+  segment.SetInputSize(cv::Size(width, height));
 
   std::string input = argv[7];
   std::string output = argv[8];
+  std::string scale = argv[9];
+  if (argc > 9)
+  {
+    std::string mode = argv[9];
+    if (mode == "gpu")
+    {
+      //regress.SetMode(1);
+      //regress.SetDevice(0);
+    }
+  }
 
   CreateFolderIfNotExist(output.c_str());
   std::ofstream ofs(output + "\\colormapping.txt");
   std::vector<cv::Scalar> color_map(class_num);
-  cv::RNG rng;
+  cv::RNG rng(time(0));
   for (int i = 0; i < class_num; ++i)
   {
     color_map[i] = cv::Scalar(rng.next() % 255, rng.next() % 255, rng.next() % 255);
     ofs << i << ":" << color_map[i][0] << " " << color_map[i][1] << " " << color_map[i][2] << " " << std::endl;
   }
   ofs.close();
+
+  /*std::vector<cv::Scalar> bg_color(10);  
+  for (int i = 0; i < 10; ++i)
+  {
+    bg_color[i] = cv::Scalar(rng.next() % 255, rng.next() % 255, rng.next() % 255);
+  }  */
 
   std::list<std::string> input_files;
   if (command == "testfile")
@@ -187,7 +208,9 @@ int main(int argc, char** argv)
   {
     ScanFile(input, "*.*", input_files);
   }
-
+#ifdef _TIME_LOG_
+  double last_tick = (double)cv::getTickCount();
+#endif
   int file_index = 0;
   for (std::list<std::string>::const_iterator it = input_files.begin();
   it != input_files.end();
@@ -197,40 +220,7 @@ int main(int argc, char** argv)
     std::cout << file_index << " - " << *it << std::endl;
     cv::Mat img = cv::imread(*it);
 
-    cv::Size size(width, height);
-    cv::Rect rect_region;
-    cv::Mat image_scale = MatScaleExtend(img, size, cv::BORDER_CONSTANT, 0, rect_region);
-
-    std::vector<float> val = regress.Regression(image_scale, 1);
-    cv::Mat prob_mat;
-    Blob2Mat(&(val[0]), class_num, height, width, prob_mat);
-    int pix_count = height * width;
-
-    //std::vector<int> class_val(pix_count);
-    float* pval = prob_mat.ptr<float>();
-    //for (int i = 0; i < pix_count; ++i, pval+=class_num)
-    //{
-    //  /*std::vector<std::pair<float, int> > pair_value;
-    //  for (int k = 0; k < class_num; ++k)
-    //    pair_value.push_back(std::pair<float, int>(pval[k], k));*/
-
-    //  class_val[i] = std::max_element(pval, pval + class_num) - pval;
-    //}
-    cv::Mat img_segment(height, width, CV_16SC1);
-    for (int y = 0; y < height; y++)
-    {
-      for (int x = 0; x < width; ++x)
-      {
-        int idx = std::max_element(pval, pval + class_num) - pval;
-        img_segment.at<short>(y, x) = idx;
-        pval += class_num;
-      }
-    }
-
-
-    cv::Mat img_seg_crop = img_segment(rect_region);
-    cv::Mat img_seg_output;
-    cv::resize(img_seg_crop, img_seg_output, img.size());
+    cv::Mat img_seg_output = segment.Segment(img);    
 
     cv::Mat img_seg_color(img_seg_output.size(), CV_8UC3);
     for (int y = 0; y < img.rows; ++y)
@@ -271,9 +261,18 @@ int main(int argc, char** argv)
       std::string seg_image = seg_path + "\\" + file_name;
       cv::imwrite(seg_image, img_seg_output);
     }
+#ifdef _TIME_LOG_
+    {
+      double tick = cv::getTickCount();
+      double time_measure = ((double)tick - last_tick) / cv::getTickFrequency();
+      last_tick = tick;
+      std::cout << " Time : " << time_measure << "s" << std::endl;
+    }
+#endif
   }
   return 0;
 }
 
 //segmentation.exe
 //train_val.prototxt model.caffemodel a.jpg 500 500 21
+
