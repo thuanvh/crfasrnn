@@ -2,8 +2,8 @@
 #include "caffe/caffe.hpp"
 #include "caffe/ImageFeatureDataLayer.h"
 //#include "../VirtualMakeover/utility/StringUtils.h"
-using namespace caffe;
-
+using namespace crfasrnn_caffe;
+using namespace semantic_segment;
 ImageRegresionNN::ImageRegresionNN():m_Net(NULL)
 {
   
@@ -74,11 +74,11 @@ void ImageRegresionNN::Train( const std::string& netconfig, const std::string& n
 {
   //::google::InitGoogleLogging(netconfig);
 
-  caffe::SolverParameter solver_param;
+  crfasrnn_caffe::SolverParameter solver_param;
   ReadProtoFromTextFileOrDie(netconfig, &solver_param);
 
   LOG(INFO) << "Starting Optimization";
-  caffe::SGDSolver<float> solver(solver_param);
+  crfasrnn_caffe::SGDSolver<float> solver(solver_param);
   if (!netresult.empty()) 
   {
     LOG(INFO) << "Resuming from " << netresult;
@@ -109,10 +109,13 @@ void ImageRegresionNN::SetDevice( int device )
 
 void ImageRegresionNN::LoadNet( const std::string& netconfig, const std::string& trainedLayers)
 {
+  std::cout << "Begin LoadNet" << std::endl;
   if(m_Net)
     delete (Net<float>*)m_Net;
   std::string input = netconfig;
+  std::cout << "begin new Net LoadNet " << input << std::endl;
   m_Net = new Net<float>(input);
+  std::cout << "new Net LoadNet" << std::endl;
   if (!trainedLayers.empty())
   {
     Net<float>* pnet = (Net<float>*)(m_Net);

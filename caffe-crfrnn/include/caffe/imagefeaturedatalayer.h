@@ -10,7 +10,7 @@
 using namespace Concurrency;
 #endif
 #endif
-namespace caffe {
+namespace crfasrnn_caffe {
   template <typename Dtype>
   class ImageFeatureDataLayer : public BaseDataLayer<Dtype> {
   public:

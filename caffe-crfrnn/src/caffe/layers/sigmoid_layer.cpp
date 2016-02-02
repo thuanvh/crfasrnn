@@ -5,7 +5,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 inline Dtype sigmoid(Dtype x) {
@@ -46,4 +46,4 @@ STUB_GPU(SigmoidLayer);
 INSTANTIATE_CLASS(SigmoidLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -18,7 +18,7 @@
 #include "caffe/util/io.hpp"
 #include <io.h>
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 using google::protobuf::io::FileInputStream;
 using google::protobuf::io::FileOutputStream;
@@ -251,4 +251,4 @@ void hdf5_save_nd_dataset<double>(
   CHECK_GE(status, 0) << "Failed to make double dataset " << dataset_name;
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

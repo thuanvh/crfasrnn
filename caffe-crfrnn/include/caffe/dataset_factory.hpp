@@ -7,7 +7,7 @@
 #include "caffe/dataset.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename K, typename V>
 shared_ptr<Dataset<K, V> > DatasetFactory(const DataParameter_DB& type);
@@ -15,6 +15,6 @@ shared_ptr<Dataset<K, V> > DatasetFactory(const DataParameter_DB& type);
 template <typename K, typename V>
 shared_ptr<Dataset<K, V> > DatasetFactory(const string& type);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_DATASET_FACTORY_H_

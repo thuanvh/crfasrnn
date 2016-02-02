@@ -4,7 +4,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 const float kBNLL_THRESHOLD = 50.;
 
@@ -44,4 +44,4 @@ STUB_GPU(BNLLLayer);
 
 INSTANTIATE_CLASS(BNLLLayer);
 REGISTER_LAYER_CLASS(BNLL, BNLLLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

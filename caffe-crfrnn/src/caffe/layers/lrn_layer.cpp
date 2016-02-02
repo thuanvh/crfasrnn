@@ -4,7 +4,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void LRNLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -253,4 +253,4 @@ STUB_GPU_BACKWARD(LRNLayer, CrossChannelBackward);
 
 INSTANTIATE_CLASS(LRNLayer);
 REGISTER_LAYER_CLASS(LRN, LRNLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

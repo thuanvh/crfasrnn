@@ -11,7 +11,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/upgrade_proto.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 Solver<Dtype>::Solver(const SolverParameter& param)
@@ -830,4 +830,4 @@ INSTANTIATE_CLASS(SGDSolver);
 INSTANTIATE_CLASS(NesterovSolver);
 INSTANTIATE_CLASS(AdaGradSolver);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void HingeLossLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
@@ -78,4 +78,4 @@ void HingeLossLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(HingeLossLayer);
 REGISTER_LAYER_CLASS(HINGE_LOSS, HingeLossLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

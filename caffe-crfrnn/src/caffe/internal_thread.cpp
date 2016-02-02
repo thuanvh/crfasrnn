@@ -2,7 +2,7 @@
 
 #include "caffe/util/thread.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 InternalThread::~InternalThread() {
   WaitForInternalThreadToExit();
@@ -16,7 +16,7 @@ bool InternalThread::StartInternalThread() {
     return false;
   }
   try {
-    thread_ = new caffe::Thread
+    thread_ = new crfasrnn_caffe::Thread
         (&InternalThread::InternalThreadEntry, this);
   } catch (...) {
     return false;
@@ -36,4 +36,4 @@ bool InternalThread::WaitForInternalThreadToExit() {
   return true;
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

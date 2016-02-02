@@ -9,7 +9,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void CuDNNSoftmaxLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -42,5 +42,5 @@ CuDNNSoftmaxLayer<Dtype>::~CuDNNSoftmaxLayer() {
 
 INSTANTIATE_CLASS(CuDNNSoftmaxLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 #endif

@@ -1,8 +1,8 @@
 syntax = "proto2";
 
-package caffe;
+package crfasrnn_caffe;
 
-import "caffe.proto";
+import "crfasrnn_caffe.proto";
 
 // A near-duplicate of NetParameter with fields re-numbered to beautify
 // automatic prototext dumps.  The main practical purpose is to print inputs

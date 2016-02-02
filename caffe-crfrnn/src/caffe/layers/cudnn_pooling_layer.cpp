@@ -7,7 +7,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void CuDNNPoolingLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -42,5 +42,5 @@ CuDNNPoolingLayer<Dtype>::~CuDNNPoolingLayer() {
 
 INSTANTIATE_CLASS(CuDNNPoolingLayer);
 
-}   // namespace caffe
+}   // namespace crfasrnn_caffe
 #endif

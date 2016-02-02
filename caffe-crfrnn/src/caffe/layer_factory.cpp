@@ -5,7 +5,7 @@
 #include "caffe/proto/caffe.pb.h"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 // Get convolution layer according to engine.
 template <typename Dtype>
@@ -155,4 +155,4 @@ REGISTER_LAYER_CREATOR(TANH, GetTanHLayer);
 
 // Layers that use their constructor as their default creator should be
 // registered in their corresponding cpp files. Do not registere them here.
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

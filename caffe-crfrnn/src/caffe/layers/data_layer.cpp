@@ -13,7 +13,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 DataLayer<Dtype>::~DataLayer<Dtype>() {
@@ -155,4 +155,4 @@ void DataLayer<Dtype>::InternalThreadEntry() {
 
 INSTANTIATE_CLASS(DataLayer);
 REGISTER_LAYER_CLASS(DATA, DataLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

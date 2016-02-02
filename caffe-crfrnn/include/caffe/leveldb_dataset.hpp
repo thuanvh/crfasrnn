@@ -11,7 +11,7 @@
 #include "caffe/common.hpp"
 #include "caffe/dataset.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename K, typename V,
           typename KCoder = dataset_internal::DefaultCoder<K>,
@@ -85,6 +85,6 @@ class LeveldbDataset : public Dataset<K, V, KCoder, VCoder> {
   bool read_only_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_LEVELDB_DATASET_H_

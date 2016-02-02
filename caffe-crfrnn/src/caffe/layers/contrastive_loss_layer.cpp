@@ -6,7 +6,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void ContrastiveLossLayer<Dtype>::LayerSetUp(
@@ -98,4 +98,4 @@ STUB_GPU(ContrastiveLossLayer);
 
 INSTANTIATE_CLASS(ContrastiveLossLayer);
 REGISTER_LAYER_CLASS(CONTRASTIVE_LOSS, ContrastiveLossLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -13,7 +13,7 @@
 #include "caffe/neuron_layers.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief Compute the index of the @f$ K @f$ max values for each datum across
@@ -505,6 +505,6 @@ class SliceLayer : public Layer<Dtype> {
   vector<int> slice_point_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_COMMON_LAYERS_HPP_

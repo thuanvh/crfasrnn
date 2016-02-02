@@ -5,7 +5,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void CuDNNSigmoidLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -38,5 +38,5 @@ CuDNNSigmoidLayer<Dtype>::~CuDNNSigmoidLayer() {
 
 INSTANTIATE_CLASS(CuDNNSigmoidLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 #endif

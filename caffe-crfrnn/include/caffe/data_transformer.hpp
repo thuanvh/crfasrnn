@@ -11,7 +11,7 @@
 #include "caffe/common.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief Applies common transformations to the input data, such as
@@ -103,7 +103,7 @@ class DataTransformer {
   vector<Dtype> mean_values_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_DATA_TRANSFORMER_HPP_
 

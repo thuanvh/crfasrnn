@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void LossLayer<Dtype>::LayerSetUp(
@@ -29,4 +29,4 @@ void LossLayer<Dtype>::Reshape(
 
 INSTANTIATE_CLASS(LossLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

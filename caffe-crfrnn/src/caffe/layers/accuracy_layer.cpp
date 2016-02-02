@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void AccuracyLayer<Dtype>::LayerSetUp(
@@ -80,4 +80,4 @@ void AccuracyLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(AccuracyLayer);
 REGISTER_LAYER_CLASS(ACCURACY, AccuracyLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

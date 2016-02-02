@@ -90,7 +90,7 @@ private:\
 // is executed we will see a fatal log.
 #define NOT_IMPLEMENTED LOG(FATAL) << "Not Implemented Yet"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 // We will use the boost shared_ptr instead of the new C++11 one mainly
 // because cuda does not work (at least now) well with C++11 features.
@@ -206,6 +206,6 @@ class CAFFE_DLL_EXPORT Caffe {
   DISABLE_COPY_AND_ASSIGN(Caffe);
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_COMMON_HPP_

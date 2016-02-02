@@ -1,7 +1,7 @@
 #include "caffe\segmentlib.h"
 #include <opencv2/opencv.hpp>
 #include <list>
-//#include "caffe\caffe.hpp"
+#include "caffe\caffe.hpp"
 #include <windows.h>
 #define _TIME_LOG_
 cv::Mat MatScaleExtend(const cv::Mat& mat, const cv::Size& size, int border_type, const cv::Scalar& value, cv::Rect& rect_region)
@@ -33,7 +33,7 @@ void Blob2Mat(const float* blob, int channels, int height, int width, cv::Mat & 
     mat_vec[i] = cv::Mat(height, width, CV_32FC1);
     float* m_ptr = mat_vec[i].ptr<float>();
     memcpy(m_ptr, ptr, area*sizeof(float));
-    //caffe::caffe_copy(area, ptr, m_ptr);
+    //crfasrnn_caffe::caffe_copy(area, ptr, m_ptr);
     cv::Mat display = mat_vec[i];
     display.convertTo(display, CV_8UC1, 128, 128);
     imwrite("output" + std::to_string(i) + ".jpg", display);

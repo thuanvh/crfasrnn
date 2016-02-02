@@ -11,7 +11,7 @@
 #include "caffe/neuron_layers.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 const float kLOG_THRESHOLD = 1e-20;
 
@@ -770,6 +770,6 @@ class SoftmaxWithLossLayer : public LossLayer<Dtype> {
   bool normalize_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_LOSS_LAYERS_HPP_

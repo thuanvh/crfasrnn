@@ -13,7 +13,7 @@
 #define HDF5_DATA_DATASET_NAME "data"
 #define HDF5_DATA_LABEL_NAME "label"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief An interface for layers that take one blob as input (@f$ x @f$)
@@ -674,6 +674,6 @@ class ThresholdLayer : public NeuronLayer<Dtype> {
   Dtype threshold_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_NEURON_LAYERS_HPP_

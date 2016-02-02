@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void MultinomialLogisticLossLayer<Dtype>::Reshape(
@@ -63,4 +63,4 @@ void MultinomialLogisticLossLayer<Dtype>::Backward_cpu(
 
 INSTANTIATE_CLASS(MultinomialLogisticLossLayer);
 REGISTER_LAYER_CLASS(MULTINOMIAL_LOGISTIC_LOSS, MultinomialLogisticLossLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

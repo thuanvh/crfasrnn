@@ -4,7 +4,7 @@
 #include "caffe/syncedmem.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 SyncedMemory::~SyncedMemory() {
   if (cpu_ptr_ && own_cpu_data_) {
@@ -111,5 +111,5 @@ void* SyncedMemory::mutable_gpu_data() {
 }
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 

@@ -5,7 +5,7 @@
 #include "caffe/common.hpp"
 #include "caffe/util/rng.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 shared_ptr<Caffe> Caffe::singleton_;
 
@@ -62,11 +62,11 @@ void Caffe::DeviceQuery() {
 
 class Caffe::RNG::Generator {
  public:
-  Generator() : rng_(new caffe::rng_t(cluster_seedgen())) {}
-  explicit Generator(unsigned int seed) : rng_(new caffe::rng_t(seed)) {}
-  caffe::rng_t* rng() { return rng_.get(); }
+  Generator() : rng_(new crfasrnn_caffe::rng_t(cluster_seedgen())) {}
+  explicit Generator(unsigned int seed) : rng_(new crfasrnn_caffe::rng_t(seed)) {}
+  crfasrnn_caffe::rng_t* rng() { return rng_.get(); }
  private:
-  shared_ptr<caffe::rng_t> rng_;
+  shared_ptr<crfasrnn_caffe::rng_t> rng_;
 };
 
 Caffe::RNG::RNG() : generator_(new Generator()) { }
@@ -184,11 +184,11 @@ void Caffe::DeviceQuery() {
 
 class Caffe::RNG::Generator {
  public:
-  Generator() : rng_(new caffe::rng_t(cluster_seedgen())) {}
-  explicit Generator(unsigned int seed) : rng_(new caffe::rng_t(seed)) {}
-  caffe::rng_t* rng() { return rng_.get(); }
+  Generator() : rng_(new crfasrnn_caffe::rng_t(cluster_seedgen())) {}
+  explicit Generator(unsigned int seed) : rng_(new crfasrnn_caffe::rng_t(seed)) {}
+  crfasrnn_caffe::rng_t* rng() { return rng_.get(); }
  private:
-  shared_ptr<caffe::rng_t> rng_;
+  shared_ptr<crfasrnn_caffe::rng_t> rng_;
 };
 
 Caffe::RNG::RNG() : generator_(new Generator()) { }
@@ -268,4 +268,4 @@ const char* curandGetErrorString(curandStatus_t error) {
 
 #endif  // CPU_ONLY
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

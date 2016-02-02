@@ -9,7 +9,7 @@
 /************************************************/
 /***          ModifiedPermutohedral Lattice   ***/
 /************************************************/
-namespace caffe {
+namespace crfasrnn_caffe {
 
 class ModifiedPermutohedral
 {

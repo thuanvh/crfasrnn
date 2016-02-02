@@ -6,7 +6,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void ArgMaxLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -60,4 +60,4 @@ void ArgMaxLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 INSTANTIATE_CLASS(ArgMaxLayer);
 REGISTER_LAYER_CLASS(ARGMAX, ArgMaxLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

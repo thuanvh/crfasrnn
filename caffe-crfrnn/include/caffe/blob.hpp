@@ -6,7 +6,7 @@
 #include "caffe/syncedmem.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief A wrapper around SyncedMemory holders serving as the basic
@@ -139,6 +139,6 @@ class Blob {
   DISABLE_COPY_AND_ASSIGN(Blob);
 };  // class Blob
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_BLOB_HPP_

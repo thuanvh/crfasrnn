@@ -5,7 +5,7 @@
 #include "caffe/util/im2col.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void im2col_cpu(const Dtype* data_im, const int channels,
@@ -80,4 +80,4 @@ template void col2im_cpu<double>(const double* data_col, const int channels,
     const int pad_h, const int pad_w, const int stride_h,
     const int stride_w, double* data_im);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

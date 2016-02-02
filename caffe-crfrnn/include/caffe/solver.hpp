@@ -6,7 +6,7 @@
 
 #include "caffe/net.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief An interface for classes that perform optimization on Net%s.
@@ -141,6 +141,6 @@ Solver<Dtype>* GetSolver(const SolverParameter& param) {
   return (Solver<Dtype>*) NULL;
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_OPTIMIZATION_SOLVER_HPP_

@@ -17,7 +17,7 @@
 #include "caffe/util/modified_permutohedral.hpp"
 #include <boost/shared_array.hpp>
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 class BaseConvolutionLayer : public Layer<Dtype> {
@@ -653,6 +653,6 @@ class CropLayer : public Layer<Dtype> {
   int crop_h_, crop_w_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_VISION_LAYERS_HPP_

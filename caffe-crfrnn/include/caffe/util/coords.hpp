@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 class DiagonalAffineMap {
@@ -56,6 +56,6 @@ DiagonalAffineMap<Dtype> FilterMap(const int kernel_h, const int kernel_w,
   return DiagonalAffineMap<Dtype>(coefs);
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_UTIL_COORDS_H_

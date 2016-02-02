@@ -4,7 +4,7 @@
 #include "caffe/neuron_layers.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void AbsValLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -41,4 +41,4 @@ STUB_GPU(AbsValLayer);
 
 INSTANTIATE_CLASS(AbsValLayer);
 REGISTER_LAYER_CLASS(ABSVAL, AbsValLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

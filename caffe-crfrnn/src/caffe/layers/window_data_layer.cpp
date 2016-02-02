@@ -26,7 +26,7 @@
 //const int CV_LOAD_IMAGE_COLOR = cv::IMREAD_COLOR;
 #endif
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 WindowDataLayer<Dtype>::~WindowDataLayer<Dtype>() {
@@ -214,8 +214,8 @@ void WindowDataLayer<Dtype>::DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
 template <typename Dtype>
 unsigned int WindowDataLayer<Dtype>::PrefetchRand() {
   CHECK(prefetch_rng_);
-  caffe::rng_t* prefetch_rng =
-      static_cast<caffe::rng_t*>(prefetch_rng_->generator());
+  crfasrnn_caffe::rng_t* prefetch_rng =
+      static_cast<crfasrnn_caffe::rng_t*>(prefetch_rng_->generator());
   return (*prefetch_rng)();
 }
 
@@ -464,4 +464,4 @@ void WindowDataLayer<Dtype>::InternalThreadEntry() {
 
 INSTANTIATE_CLASS(WindowDataLayer);
 REGISTER_LAYER_CLASS(WINDOW_DATA, WindowDataLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

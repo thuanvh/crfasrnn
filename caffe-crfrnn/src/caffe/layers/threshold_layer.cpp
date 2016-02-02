@@ -4,7 +4,7 @@
 #include "caffe/vision_layers.hpp"
 
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void ThresholdLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -30,4 +30,4 @@ STUB_GPU_FORWARD(ThresholdLayer, Forward);
 
 INSTANTIATE_CLASS(ThresholdLayer);
 REGISTER_LAYER_CLASS(THRESHOLD, ThresholdLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

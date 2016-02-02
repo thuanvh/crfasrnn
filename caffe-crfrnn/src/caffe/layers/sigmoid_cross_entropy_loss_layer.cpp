@@ -6,7 +6,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void SigmoidCrossEntropyLossLayer<Dtype>::LayerSetUp(
@@ -76,4 +76,4 @@ STUB_GPU(SigmoidCrossEntropyLossLayer);
 
 INSTANTIATE_CLASS(SigmoidCrossEntropyLossLayer);
 REGISTER_LAYER_CLASS(SIGMOID_CROSS_ENTROPY_LOSS, SigmoidCrossEntropyLossLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

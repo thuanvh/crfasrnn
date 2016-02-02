@@ -7,7 +7,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void TanHLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
@@ -43,4 +43,4 @@ STUB_GPU(TanHLayer);
 
 INSTANTIATE_CLASS(TanHLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

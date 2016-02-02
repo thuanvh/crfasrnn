@@ -12,7 +12,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief Connects Layer%s together into a directed acyclic graph (DAG)
@@ -229,6 +229,6 @@ class Net {
 };
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_NET_HPP_

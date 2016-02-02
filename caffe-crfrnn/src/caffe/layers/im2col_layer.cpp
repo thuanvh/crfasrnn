@@ -5,7 +5,7 @@
 #include "caffe/util/im2col.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void Im2colLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -89,4 +89,4 @@ STUB_GPU(Im2colLayer);
 
 INSTANTIATE_CLASS(Im2colLayer);
 REGISTER_LAYER_CLASS(IM2COL, Im2colLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

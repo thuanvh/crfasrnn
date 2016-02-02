@@ -6,7 +6,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void DeconvolutionLayer<Dtype>::compute_output_shape() {
@@ -75,4 +75,4 @@ STUB_GPU(DeconvolutionLayer);
 
 INSTANTIATE_CLASS(DeconvolutionLayer);
 REGISTER_LAYER_CLASS(DECONVOLUTION, DeconvolutionLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -10,7 +10,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/util/upgrade_proto.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 bool NetNeedsUpgrade(const NetParameter& net_param) {
   for (int i = 0; i < net_param.layers_size(); ++i) {
@@ -640,4 +640,4 @@ void ReadNetParamsFromBinaryFileOrDie(const string& param_file,
   UpgradeNetAsNeeded(param_file, param);
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -5,7 +5,7 @@
 #include "caffe/common.hpp"
 #include "caffe/internal_thread.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template<typename Callable, class A1>
 Thread::Thread(Callable func, A1 a1) {
@@ -20,6 +20,6 @@ bool Thread::joinable() {
   return static_cast<boost::thread*>(this->thread_)->joinable();
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif

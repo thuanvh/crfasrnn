@@ -9,7 +9,7 @@
 #include "caffe/util/io.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 HDF5OutputLayer<Dtype>::HDF5OutputLayer(const LayerParameter& param)
@@ -71,4 +71,4 @@ STUB_GPU(HDF5OutputLayer);
 
 INSTANTIATE_CLASS(HDF5OutputLayer);
 REGISTER_LAYER_CLASS(HDF5_OUTPUT, HDF5OutputLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

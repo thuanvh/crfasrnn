@@ -20,13 +20,13 @@
 #include "caffe/vision_layers.hpp"
 #include <opencv2/opencv.hpp>
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void MultiStageMeanfieldLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
       const vector<Blob<Dtype>*>& top) {
 
-  const caffe::MultiStageMeanfieldParameter meanfield_param = this->layer_param_.multi_stage_meanfield_param();
+  const crfasrnn_caffe::MultiStageMeanfieldParameter meanfield_param = this->layer_param_.multi_stage_meanfield_param();
 
   num_iterations_ = meanfield_param.num_iterations();
 
@@ -167,7 +167,7 @@ void Blob2Mat(const float* blob, int channels, int height, int width, cv::Mat & 
     mat_vec[i] = cv::Mat(height, width, CV_32FC1);
     float* m_ptr = mat_vec[i].ptr<float>();
     memcpy(m_ptr, ptr, area*sizeof(float));
-    //caffe::caffe_copy(area, ptr, m_ptr);
+    //crfasrnn_caffe::caffe_copy(area, ptr, m_ptr);
     cv::Mat display = mat_vec[i];
     display.convertTo(display, CV_8UC1, 128, 128);
     cv::imwrite("output" + std::to_string(i) + ".jpg", display);
@@ -277,4 +277,4 @@ void MultiStageMeanfieldLayer<Dtype>::compute_spatial_kernel(float* const output
 
 INSTANTIATE_CLASS(MultiStageMeanfieldLayer);
 REGISTER_LAYER_CLASS(MULTI_STAGE_MEANFIELD, MultiStageMeanfieldLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

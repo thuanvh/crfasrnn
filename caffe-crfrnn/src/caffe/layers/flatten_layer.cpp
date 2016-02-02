@@ -4,7 +4,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void FlattenLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
@@ -35,4 +35,4 @@ STUB_GPU(FlattenLayer);
 
 INSTANTIATE_CLASS(FlattenLayer);
 REGISTER_LAYER_CLASS(FLATTEN, FlattenLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

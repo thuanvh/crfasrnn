@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void DropoutLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -74,4 +74,4 @@ STUB_GPU(DropoutLayer);
 
 INSTANTIATE_CLASS(DropoutLayer);
 REGISTER_LAYER_CLASS(DROPOUT, DropoutLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

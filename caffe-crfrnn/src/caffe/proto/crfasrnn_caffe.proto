@@ -1,6 +1,6 @@
 syntax = "proto2";
 
-package caffe;
+package crfasrnn_caffe;
 
 message BlobProto {
   optional int32 num = 1 [default = 0];

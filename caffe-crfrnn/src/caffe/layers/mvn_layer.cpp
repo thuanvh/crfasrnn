@@ -5,7 +5,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void MVNLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
@@ -160,4 +160,4 @@ STUB_GPU(MVNLayer);
 
 INSTANTIATE_CLASS(MVNLayer);
 REGISTER_LAYER_CLASS(MVN, MVNLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

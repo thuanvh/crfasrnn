@@ -6,7 +6,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 //memory reduced change
 template <typename Dtype>
 Blob<Dtype> BaseConvolutionLayer<Dtype>::col_buffer_;
@@ -295,4 +295,4 @@ void BaseConvolutionLayer<Dtype>::backward_gpu_bias(Dtype* bias,
 
 INSTANTIATE_CLASS(BaseConvolutionLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

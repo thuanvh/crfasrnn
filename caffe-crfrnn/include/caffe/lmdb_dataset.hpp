@@ -10,7 +10,7 @@
 #include "caffe/common.hpp"
 #include "caffe/dataset.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename K, typename V,
           typename KCoder = dataset_internal::DefaultCoder<K>,
@@ -90,6 +90,6 @@ class LmdbDataset : public Dataset<K, V, KCoder, VCoder> {
   MDB_txn* read_txn_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_LMDB_DATASET_H_

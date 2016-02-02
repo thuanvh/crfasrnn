@@ -20,7 +20,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * To be invoked once only immediately after construction.
@@ -281,4 +281,4 @@ void MeanfieldIteration<Dtype>::Backward_cpu() {
 }
 
 INSTANTIATE_CLASS(MeanfieldIteration);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -3,7 +3,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void NeuronLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
@@ -13,4 +13,4 @@ void NeuronLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(NeuronLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

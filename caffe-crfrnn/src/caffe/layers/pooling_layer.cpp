@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 using std::min;
 using std::max;
@@ -315,4 +315,4 @@ STUB_GPU(PoolingLayer);
 INSTANTIATE_CLASS(PoolingLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

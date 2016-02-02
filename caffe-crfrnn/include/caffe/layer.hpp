@@ -13,7 +13,7 @@
 #include "caffe/util/coords.hpp"
 #include "caffe/util/device_alternate.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype> class Net;
 
@@ -487,6 +487,6 @@ void Layer<Dtype>::ToProto(LayerParameter* param, bool write_diff) {
   }
 }
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_LAYER_H_

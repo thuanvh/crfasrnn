@@ -7,7 +7,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void InnerProductLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -105,4 +105,4 @@ STUB_GPU(InnerProductLayer);
 
 INSTANTIATE_CLASS(InnerProductLayer);
 REGISTER_LAYER_CLASS(INNER_PRODUCT, InnerProductLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

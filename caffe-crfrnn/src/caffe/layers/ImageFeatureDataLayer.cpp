@@ -25,7 +25,7 @@ namespace {
       mat_vec[i] = cv::Mat(size, size, CV_32FC1);
       float* m_ptr = mat_vec[i].ptr<float>();
       //memcpy(m_ptr, ptr, size*size*sizeof(float));
-      caffe::caffe_copy(size*size, ptr, m_ptr);
+      crfasrnn_caffe::caffe_copy(size*size, ptr, m_ptr);
     }
     cv::merge(mat_vec, mat);
   }
@@ -41,7 +41,7 @@ namespace {
 }
 
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 //template <typename Dtype>
 //ImageFeatureDataLayer<Dtype>::~ImageFeatureDataLayer<Dtype>() { }
@@ -193,4 +193,4 @@ void ImageFeatureDataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& botto
 
 INSTANTIATE_CLASS(ImageFeatureDataLayer);
 REGISTER_LAYER_CLASS(IMAGE_FEATURE_DATA, ImageFeatureDataLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void InfogainLossLayer<Dtype>::LayerSetUp(
@@ -107,4 +107,4 @@ void InfogainLossLayer<Dtype>::Backward_cpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_CLASS(InfogainLossLayer);
 REGISTER_LAYER_CLASS(INFOGAIN_LOSS, InfogainLossLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

@@ -16,7 +16,7 @@
 
 //#include "caffe/test/test_caffe_main.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 Net<Dtype>::Net(const NetParameter& param) {
@@ -823,4 +823,4 @@ const shared_ptr<Layer<Dtype> > Net<Dtype>::layer_by_name(
 
 INSTANTIATE_CLASS(Net);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

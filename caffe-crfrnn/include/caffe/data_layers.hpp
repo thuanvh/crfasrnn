@@ -17,7 +17,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * @brief Provides base for data layers that feed blobs to the Net.
@@ -334,6 +334,6 @@ class WindowDataLayer : public BasePrefetchingDataLayer<Dtype> {
   vector<std::pair<std::string, Datum > > image_database_cache_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_DATA_LAYERS_HPP_

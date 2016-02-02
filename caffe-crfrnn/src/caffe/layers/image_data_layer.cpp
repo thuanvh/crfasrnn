@@ -11,7 +11,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/util/rng.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 ImageDataLayer<Dtype>::~ImageDataLayer<Dtype>() {
@@ -85,8 +85,8 @@ void ImageDataLayer<Dtype>::DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
 
 template <typename Dtype>
 void ImageDataLayer<Dtype>::ShuffleImages() {
-  caffe::rng_t* prefetch_rng =
-      static_cast<caffe::rng_t*>(prefetch_rng_->generator());
+  crfasrnn_caffe::rng_t* prefetch_rng =
+      static_cast<crfasrnn_caffe::rng_t*>(prefetch_rng_->generator());
   shuffle(lines_.begin(), lines_.end(), prefetch_rng);
 }
 
@@ -148,4 +148,4 @@ void ImageDataLayer<Dtype>::InternalThreadEntry() {
 
 INSTANTIATE_CLASS(ImageDataLayer);
 REGISTER_LAYER_CLASS(IMAGE_DATA, ImageDataLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

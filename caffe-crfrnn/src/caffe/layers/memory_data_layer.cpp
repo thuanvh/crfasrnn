@@ -4,7 +4,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/util/io.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void MemoryDataLayer<Dtype>::DataLayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -73,4 +73,4 @@ void MemoryDataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(MemoryDataLayer);
 REGISTER_LAYER_CLASS(MEMORY_DATA, MemoryDataLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

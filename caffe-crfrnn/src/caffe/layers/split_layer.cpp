@@ -4,7 +4,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void SplitLayer<Dtype>::Reshape(const vector<Blob<Dtype>*>& bottom,
@@ -57,4 +57,4 @@ STUB_GPU(SplitLayer);
 
 INSTANTIATE_CLASS(SplitLayer);
 REGISTER_LAYER_CLASS(SPLIT, SplitLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

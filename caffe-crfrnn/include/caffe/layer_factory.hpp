@@ -48,7 +48,7 @@
 #include "caffe/common.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 class Layer;
@@ -113,6 +113,6 @@ class LayerRegisterer {
   }                                                                            \
   REGISTER_LAYER_CREATOR(type, Creator_##clsname)
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif  // CAFFE_LAYER_FACTORY_H_

@@ -17,7 +17,7 @@
 
 #define HDF5_NUM_DIMS 4
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 using ::google::protobuf::Message;
 
@@ -179,6 +179,6 @@ template <typename Dtype>
 void hdf5_save_nd_dataset(
   const hid_t file_id, const string dataset_name, const Blob<Dtype>& blob);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif   // CAFFE_UTIL_IO_H_

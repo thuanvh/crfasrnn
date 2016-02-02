@@ -7,7 +7,7 @@
 #include "caffe/caffe.hpp"
 #include "caffe/lmdb_dataset.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename K, typename V, typename KCoder, typename VCoder>
 bool LmdbDataset<K, V, KCoder, VCoder>::open(const string& filename,
@@ -363,4 +363,4 @@ typename Dataset<K, V, KCoder, VCoder>::KV&
 
 INSTANTIATE_DATASET(LmdbDataset);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

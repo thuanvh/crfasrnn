@@ -3,7 +3,7 @@
 
 #include "caffe/common.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 /**
  * A minimal wrapper for boost::thread to force host compilation for boost
@@ -42,9 +42,9 @@ class InternalThread {
       with the code you want your thread to run. */
   virtual void InternalThreadEntry() {}
 
-  caffe::Thread* thread_;
+  crfasrnn_caffe::Thread* thread_;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif

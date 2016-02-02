@@ -4,7 +4,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void ConcatLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -106,4 +106,4 @@ STUB_GPU(ConcatLayer);
 
 INSTANTIATE_CLASS(ConcatLayer);
 REGISTER_LAYER_CLASS(CONCAT, ConcatLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

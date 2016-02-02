@@ -5,7 +5,7 @@
 #include "caffe/blob.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void PrintBlob(const Blob<Dtype>* blob, bool print_diff = false, const char* info = 0) {

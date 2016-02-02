@@ -6,7 +6,7 @@
 #include "caffe/leveldb_dataset.hpp"
 #include "caffe/lmdb_dataset.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename K, typename V>
 shared_ptr<Dataset<K, V> > DatasetFactory(const DataParameter_DB& type) {
@@ -45,6 +45,6 @@ REGISTER_DATASET(string, Datum);
 
 #undef REGISTER_DATASET
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 

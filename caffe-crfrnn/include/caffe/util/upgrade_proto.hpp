@@ -6,7 +6,7 @@
 #include "caffe/proto/caffe.pb.h"
 #include "caffe/proto/caffe_pretty_print.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 // Return true iff any layer contains parameters specified using
 // deprecated V0LayerParameter.
@@ -50,6 +50,6 @@ void ReadNetParamsFromTextFileOrDie(const string& param_file,
 void ReadNetParamsFromBinaryFileOrDie(const string& param_file,
                                       NetParameter* param);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #endif   // CAFFE_UTIL_UPGRADE_PROTO_H_

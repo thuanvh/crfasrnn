@@ -4,6 +4,9 @@
 #include <list>
 //#include "caffe\caffe.hpp"
 #include <windows.h>
+
+using namespace semantic_segment;
+
 #define _TIME_LOG_
 namespace {
   cv::Mat MatScaleExtend(const cv::Mat& mat, const cv::Size& size, int border_type, const cv::Scalar& value, cv::Rect& rect_region)
@@ -35,7 +38,7 @@ namespace {
       mat_vec[i] = cv::Mat(height, width, CV_32FC1);
       float* m_ptr = mat_vec[i].ptr<float>();
       memcpy(m_ptr, ptr, area*sizeof(float));
-      //caffe::caffe_copy(area, ptr, m_ptr);
+      //crfasrnn_caffe::caffe_copy(area, ptr, m_ptr);
       //cv::Mat display = mat_vec[i];
       //display.convertTo(display, CV_8UC1, 128, 128);
       //imwrite("output" + std::to_string(i) + ".jpg", display);
@@ -47,7 +50,11 @@ namespace {
 
 void SemanticSegment::Initialize(const std::string& model, const std::string& trained)
 {
-  regress_.LoadNet(model, trained);
+  std::cout << "Begin initialized" << std::endl;
+  regress_.reset(new ImageRegresionNN());
+  std::cout << "Begin ImageRegresionNN" << std::endl;
+  regress_->LoadNet(model, trained);
+  std::cout << "end LoadNet" << std::endl;
 }
 void SemanticSegment::SetInputSize(const cv::Size& size)
 {
@@ -87,7 +94,7 @@ cv::Mat SemanticSegment::Segment(const cv::Mat& src)
 {
   cv::Rect rect_region;
   cv::Mat input = ScaleImage(src, rect_region);
-  std::vector<float> val = regress_.Regression(input);
+  std::vector<float> val = regress_->Regression(input);
 
   cv::Mat prob_mat;
   Blob2Mat(&(val[0]), class_num_, input.rows, input.cols, prob_mat);

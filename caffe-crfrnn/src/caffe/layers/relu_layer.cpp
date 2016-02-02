@@ -4,7 +4,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void ReLULayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
@@ -44,4 +44,4 @@ STUB_GPU(ReLULayer);
 INSTANTIATE_CLASS(ReLULayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

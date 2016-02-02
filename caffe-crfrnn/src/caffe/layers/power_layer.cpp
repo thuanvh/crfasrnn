@@ -5,7 +5,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void PowerLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -100,4 +100,4 @@ STUB_GPU(PowerLayer);
 
 INSTANTIATE_CLASS(PowerLayer);
 REGISTER_LAYER_CLASS(POWER, PowerLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

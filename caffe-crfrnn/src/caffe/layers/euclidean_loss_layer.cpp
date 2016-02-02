@@ -5,7 +5,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void EuclideanLossLayer<Dtype>::Reshape(
@@ -55,4 +55,4 @@ STUB_GPU(EuclideanLossLayer);
 
 INSTANTIATE_CLASS(EuclideanLossLayer);
 REGISTER_LAYER_CLASS(EUCLIDEAN_LOSS, EuclideanLossLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

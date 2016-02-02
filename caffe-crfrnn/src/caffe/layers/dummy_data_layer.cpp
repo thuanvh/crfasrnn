@@ -4,7 +4,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void DummyDataLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
@@ -94,4 +94,4 @@ void DummyDataLayer<Dtype>::Forward_cpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_CLASS(DummyDataLayer);
 REGISTER_LAYER_CLASS(DUMMY_DATA, DummyDataLayer);
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

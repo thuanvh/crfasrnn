@@ -12,7 +12,7 @@
 #include "caffe/common.hpp"
 #include "caffe/proto/caffe.pb.h"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 namespace dataset_internal {
 
@@ -58,7 +58,7 @@ struct DefaultCoder<Message> {
 };
 
 template <>
-struct DefaultCoder<caffe::Datum> : public DefaultCoder<Message> { };
+struct DefaultCoder<crfasrnn_caffe::Datum> : public DefaultCoder<Message> { };
 
 template <>
 struct DefaultCoder<string> {
@@ -231,11 +231,11 @@ class Dataset {
       shared_ptr<DatasetState> state) const = 0;
 };
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 
 #define INSTANTIATE_DATASET(type) \
   template class type<string, string>; \
   template class type<string, vector<char> >; \
-  template class type<string, caffe::Datum>;
+  template class type<string, crfasrnn_caffe::Datum>;
 
 #endif  // CAFFE_DATASET_H_

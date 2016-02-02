@@ -5,7 +5,7 @@
 #include "caffe/caffe.hpp"
 #include "caffe/leveldb_dataset.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename K, typename V, typename KCoder, typename VCoder>
 bool LeveldbDataset<K, V, KCoder, VCoder>::open(const string& filename,
@@ -262,4 +262,4 @@ typename Dataset<K, V, KCoder, VCoder>::KV&
 
 INSTANTIATE_DATASET(LeveldbDataset);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

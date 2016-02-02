@@ -2,6 +2,7 @@
 #include <vector>
 #include "caffe/common.hpp"
 #include <opencv2/opencv.hpp>
+namespace semantic_segment{
 class CAFFE_DLL_EXPORT ImageRegresionNN
 {
 public:
@@ -23,3 +24,4 @@ private:
   void* m_Net;
 };
 
+}
