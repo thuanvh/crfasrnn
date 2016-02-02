@@ -96,7 +96,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\sandbox\utility\cnn\caffe-windows\crfasrnn\crfasrnn\caffe-crfrnn\include;D:\sandbox\utility\cnn\caffe-windows\crfasrnn\crfasrnn\caffe-crfrnn\include\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SEMANTIC_SEGMENT_EXPORT_;CPU_ONLY;PROTOBUF_USE_DLLS;EXP_CAFFE;_VARIADIC_MAX=10;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SEMANTIC_SEGMENT_EXPORT_;CPU_ONLY;PROTOBUF_USE_DLLS;_VARIADIC_MAX=10;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -128,7 +128,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>D:\sandbox\utility\cnn\caffe-windows\crfasrnn\crfasrnn\caffe-crfrnn\include;D:\sandbox\utility\cnn\caffe-windows\crfasrnn\crfasrnn\caffe-crfrnn\include\win;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_SEMANTIC_SEGMENT_EXPORT_;CPU_ONLY;PROTOBUF_USE_DLLS;EXP_CAFFE;_VARIADIC_MAX=10;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_SEMANTIC_SEGMENT_EXPORT_;CPU_ONLY;PROTOBUF_USE_DLLS;_VARIADIC_MAX=10;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -235,6 +235,45 @@
     <ClCompile Include="..\..\caffe-crfrnn\src\caffe\util\modified_permutohedral.cpp" />
     <ClCompile Include="..\..\caffe-crfrnn\src\caffe\util\upgrade_proto.cpp" />
     <ClCompile Include="..\..\caffe-crfrnn\tools\segmentlib.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\blob.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\caffe.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\common.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\common_layers.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\dataset.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\dataset_factory.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\data_layers.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\data_transformer.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\filler.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\imagefeaturedatalayer.h" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\ImageRegresionNN.h" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\internal_thread.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\layer.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\layer_factory.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\leveldb_dataset.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\lmdb_dataset.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\loss_layers.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\net.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\neuron_layers.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\segmentlib.h" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\solver.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\syncedmem.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\benchmark.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\coords.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\cudnn.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\device_alternate.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\im2col.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\insert_splits.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\io.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\math_functions.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\mkl_alternate.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\modified_permutohedral.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\rng.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\thread.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\tvg_util.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\util\upgrade_proto.hpp" />
+    <ClInclude Include="..\..\caffe-crfrnn\include\caffe\vision_layers.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
