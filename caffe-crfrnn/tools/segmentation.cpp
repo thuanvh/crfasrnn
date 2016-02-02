@@ -160,7 +160,7 @@ int main(int argc, char** argv)
 
   std::string command = argv[1];
 
-  SemanticSegment segment;
+  semantic_segment::SemanticSegment segment;
   segment.Initialize(argv[2], argv[3]);
 
   int width = atoi(argv[4]);
