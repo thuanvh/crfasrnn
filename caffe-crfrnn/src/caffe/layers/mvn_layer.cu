@@ -5,7 +5,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void MVNLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -142,4 +142,4 @@ void MVNLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_LAYER_GPU_FUNCS(MVNLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

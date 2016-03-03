@@ -6,7 +6,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void SigmoidCrossEntropyLossLayer<Dtype>::Forward_gpu(
@@ -54,4 +54,4 @@ void SigmoidCrossEntropyLossLayer<Dtype>::Backward_gpu(
 INSTANTIATE_LAYER_GPU_FUNCS(SigmoidCrossEntropyLossLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

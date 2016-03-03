@@ -2,7 +2,7 @@
 
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 // Copy (one line per thread) from one array to another, with arbitrary
 // strides in the last two dimensions.
@@ -57,4 +57,4 @@ void CropLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_LAYER_GPU_FUNCS(CropLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

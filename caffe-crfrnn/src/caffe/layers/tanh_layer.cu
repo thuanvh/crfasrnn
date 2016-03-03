@@ -7,7 +7,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 __global__ void TanHForward(const int n, const Dtype* in, Dtype* out) {
@@ -56,4 +56,4 @@ void TanHLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_LAYER_GPU_FUNCS(TanHLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

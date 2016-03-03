@@ -7,7 +7,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 __global__ void sync_conv_groups() { }
 
@@ -144,6 +144,6 @@ void CuDNNConvolutionLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_LAYER_GPU_FUNCS(CuDNNConvolutionLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
 #endif
 

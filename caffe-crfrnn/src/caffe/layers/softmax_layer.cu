@@ -8,7 +8,7 @@
 #include "caffe/util/math_functions.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 __global__ void kernel_channel_max(const int num, const int channels,
@@ -151,4 +151,4 @@ void SoftmaxLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_LAYER_GPU_FUNCS(SoftmaxLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

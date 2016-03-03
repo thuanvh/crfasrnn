@@ -6,7 +6,7 @@
 #include "caffe/common.hpp"
 #include "caffe/util/im2col.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 __global__ void im2col_gpu_kernel(const int n, const Dtype* data_im,
@@ -141,4 +141,4 @@ template void col2im_gpu<double>(const double* data_col, const int channels,
     const int pad_h, const int pad_w, const int stride_h,
     const int stride_w, double* data_im);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

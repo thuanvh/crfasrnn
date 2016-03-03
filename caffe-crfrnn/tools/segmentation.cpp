@@ -239,9 +239,17 @@ int main(int argc, char** argv)
     
     std::string file_name = GetFileName(*it);
     {
+      std::string color_path = output + "\\src";
+      CreateFolderIfNotExist(color_path.c_str());
+      std::string color_image = color_path + "\\" + file_name + ".jpg";
+      std::cout << color_image << std::endl;
+      cv::imwrite(color_image, img);
+    }
+    {
       std::string color_path = output + "\\color";
       CreateFolderIfNotExist(color_path.c_str());
-      std::string color_image = color_path + "\\" + file_name;
+      std::string color_image = color_path + "\\" + file_name + ".jpg";
+      std::cout << color_image << std::endl;
       cv::imwrite(color_image, img_seg_color);
     }
 
@@ -251,6 +259,7 @@ int main(int argc, char** argv)
       std::string seg_path = output + "\\seg";
       CreateFolderIfNotExist(seg_path.c_str());
       std::string seg_image = seg_path + "\\" + file_name;
+      std::cout << seg_image << std::endl;
       cv::imwrite(seg_image, img_seg_output);      
     }
     
@@ -259,6 +268,7 @@ int main(int argc, char** argv)
       std::string seg_path = output + "\\gray";
       CreateFolderIfNotExist(seg_path.c_str());
       std::string seg_image = seg_path + "\\" + file_name;
+      std::cout << seg_image << std::endl;
       cv::imwrite(seg_image, img_seg_output);
     }
 #ifdef _TIME_LOG_

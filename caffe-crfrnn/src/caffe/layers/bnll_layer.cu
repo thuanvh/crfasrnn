@@ -4,7 +4,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 //const float kBNLL_THRESHOLD = 50.;
 #define kBNLL_THRESHOLD 50.
@@ -58,4 +58,4 @@ void BNLLLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 INSTANTIATE_LAYER_GPU_FUNCS(BNLLLayer);
 
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

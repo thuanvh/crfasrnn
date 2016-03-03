@@ -4,7 +4,7 @@
 #include "caffe/layer.hpp"
 #include "caffe/util/math_functions.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void SilenceLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -25,4 +25,4 @@ void SilenceLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_LAYER_GPU_FUNCS(SilenceLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

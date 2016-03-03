@@ -5,7 +5,7 @@
 #include "caffe/util/im2col.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void Im2colLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -34,4 +34,4 @@ void Im2colLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
 
 INSTANTIATE_LAYER_GPU_FUNCS(Im2colLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe

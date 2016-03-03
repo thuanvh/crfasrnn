@@ -7,13 +7,13 @@
 
 #include "caffe/caffe.hpp"
 
-using caffe::Blob;
-using caffe::Caffe;
-using caffe::Net;
-using caffe::Layer;
-using caffe::shared_ptr;
-using caffe::Timer;
-using caffe::vector;
+using crfasrnn_caffe::Blob;
+using crfasrnn_caffe::Caffe;
+using crfasrnn_caffe::Net;
+using crfasrnn_caffe::Layer;
+using crfasrnn_caffe::shared_ptr;
+using crfasrnn_caffe::Timer;
+using crfasrnn_caffe::vector;
 
 
 DEFINE_int32(gpu, -1,
@@ -30,9 +30,9 @@ DEFINE_string(weights, "",
 DEFINE_int32(iterations, 50,
   "The number of iterations to run.");
 
-// A simple registry for caffe commands.
+// A simple registry for crfasrnn_caffe commands.
 typedef int(*BrewFunction)();
-typedef std::map<caffe::string, BrewFunction> BrewMap;
+typedef std::map<crfasrnn_caffe::string, BrewFunction> BrewMap;
 BrewMap g_brew_map;
 
 #define RegisterBrewFunction(func) \
@@ -46,12 +46,12 @@ class __Registerer_##func { \
 __Registerer_##func g_registerer_##func; \
 }
 
-static BrewFunction GetBrewFunction(const caffe::string& name) {
+static BrewFunction GetBrewFunction(const crfasrnn_caffe::string& name) {
   if (g_brew_map.count(name)) {
     return g_brew_map[name];
   }
   else {
-    LOG(ERROR) << "Available caffe actions:";
+    LOG(ERROR) << "Available crfasrnn_caffe actions:";
     for (BrewMap::iterator it = g_brew_map.begin();
     it != g_brew_map.end(); ++it) {
       LOG(ERROR) << "\t" << it->first;
@@ -92,12 +92,12 @@ void repeat_data(const float* filt_data, float* data, shared_ptr<Blob<float> >& 
   int size = blob->height() * blob->width();
   /*for (int i = 0; i < blob->num(); ++i)
     for (int j = 0; j < blob->channels();++j, data += size)
-      caffe::caffe_copy<float>(size, filt_data, data);*/
+      crfasrnn_caffe::caffe_copy<float>(size, filt_data, data);*/
 
   for (int i = 0; i < blob->num(); ++i)
   {
     data += (i * blob->channels() + i) * size;
-    caffe::caffe_copy<float>(size, filt_data, data);
+    crfasrnn_caffe::caffe_copy<float>(size, filt_data, data);
   }
 }
 void copy_mat2blob(const cv::Mat& filt, shared_ptr<Blob<float> >& blob)
@@ -109,12 +109,12 @@ void copy_mat2blob(const cv::Mat& filt, shared_ptr<Blob<float> >& blob)
     const float* filt_data = filt.ptr<float>();
     repeat_data(filt_data, data, blob);
   }
-  if (Caffe::mode() == Caffe::GPU)
+  /*if (Caffe::mode() == Caffe::GPU)
   {
     data = blob->mutable_gpu_data();
     const float* filt_data = filt.ptr<float>();
     repeat_data(filt_data, data, blob);
-  }  
+  }*/ 
 }
 
 void interp_surgery(shared_ptr<Net<float>>& net)
@@ -140,8 +140,8 @@ void interp_surgery(shared_ptr<Net<float>>& net)
     }
   }  
 }
-// caffe commands to call by
-//     caffe <command> <args>
+// crfasrnn_caffe commands to call by
+//     crfasrnn_caffe <command> <args>
 //
 // To add a command, define a function "int command()" and register it with
 // RegisterBrewFunction(action);
@@ -150,8 +150,8 @@ void interp_surgery(shared_ptr<Net<float>>& net)
 int device_query() {
   CHECK_GT(FLAGS_gpu, -1) << "Need a device ID to query.";
   LOG(INFO) << "Querying device ID = " << FLAGS_gpu;
-  caffe::Caffe::SetDevice(FLAGS_gpu);
-  caffe::Caffe::DeviceQuery();
+  crfasrnn_caffe::Caffe::SetDevice(FLAGS_gpu);
+  crfasrnn_caffe::Caffe::DeviceQuery();
   return 0;
 }
 RegisterBrewFunction(device_query);
@@ -164,14 +164,14 @@ int train() {
       << "Give a snapshot to resume training or weights to finetune "
       "but not both.";
   //std::cout << FLAGS_solver << std::endl;
-  caffe::SolverParameter solver_param;
-  caffe::ReadProtoFromTextFileOrDie(FLAGS_solver, &solver_param);
-  //caffe::ReadProtoFromTextFileOrDie("solver.prototxt", &solver_param);
+  crfasrnn_caffe::SolverParameter solver_param;
+  crfasrnn_caffe::ReadProtoFromTextFileOrDie(FLAGS_solver, &solver_param);
+  //crfasrnn_caffe::ReadProtoFromTextFileOrDie("solver_gpu.prototxt", &solver_param);
 
   // If the gpu flag is not provided, allow the mode and device to be set
   // in the solver prototxt.
   if (FLAGS_gpu < 0
-      && solver_param.solver_mode() == caffe::SolverParameter_SolverMode_GPU) {
+      && solver_param.solver_mode() == crfasrnn_caffe::SolverParameter_SolverMode_GPU) {
     FLAGS_gpu = solver_param.device_id();
   }
 
@@ -186,8 +186,8 @@ int train() {
   }
 
   LOG(INFO) << "Starting Optimization";
-  shared_ptr<caffe::Solver<float> >
-    solver(caffe::GetSolver<float>(solver_param));
+  shared_ptr<crfasrnn_caffe::Solver<float> >
+    solver(crfasrnn_caffe::GetSolver<float>(solver_param));
 
   interp_surgery(solver->net());
 
@@ -221,7 +221,7 @@ int test() {
     LOG(INFO) << "Use CPU.";
     Caffe::set_mode(Caffe::CPU);
   }
-  // Instantiate the caffe net.
+  // Instantiate the crfasrnn_caffe net.
   Caffe::set_phase(Caffe::TEST);
   Net<float> caffe_net(FLAGS_model);
   caffe_net.CopyTrainedLayersFrom(FLAGS_weights);
@@ -287,7 +287,7 @@ int time() {
     LOG(INFO) << "Use CPU.";
     Caffe::set_mode(Caffe::CPU);
   }
-  // Instantiate the caffe net.
+  // Instantiate the crfasrnn_caffe net.
   Caffe::set_phase(Caffe::TRAIN);
   Net<float> caffe_net(FLAGS_model);
 
@@ -344,7 +344,7 @@ int time() {
   }
   LOG(INFO) << "Average time per layer: ";
   for (int i = 0; i < layers.size(); ++i) {
-    const caffe::string& layername = layers[i]->layer_param().name();
+    const crfasrnn_caffe::string& layername = layers[i]->layer_param().name();
     LOG(INFO) << std::setfill(' ') << std::setw(10) << layername <<
       "\tforward: " << forward_time_per_layer[i] / 1000 /
       FLAGS_iterations << " ms.";
@@ -380,17 +380,17 @@ int main(int argc, char** argv) {
   //FLAGS_alsologtostderr = 1;
   // Usage message.
   gflags::SetUsageMessage("command line brew\n"
-      "usage: caffe <command> <args>\n\n"
+      "usage: crfasrnn_caffe <command> <args>\n\n"
       "commands:\n"
       "  train           train or finetune a model\n"
       "  test            score a model\n"
       "  device_query    show GPU diagnostic information\n"
       "  time            benchmark model execution time");
   // Run tool or show usage.
-  caffe::GlobalInit(&argc, &argv);
+  crfasrnn_caffe::GlobalInit(&argc, &argv);
   if (argc == 2) {
-    return GetBrewFunction(caffe::string(argv[1]))();
+    return GetBrewFunction(crfasrnn_caffe::string(argv[1]))();
   } else {
-    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/caffe");
+    gflags::ShowUsageWithFlagsRestrict(argv[0], "tools/crfasrnn_caffe");
   }
 }

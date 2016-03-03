@@ -14,7 +14,7 @@ TODO:
 #include "caffe/util/io.hpp"
 #include "caffe/vision_layers.hpp"
 
-namespace caffe {
+namespace crfasrnn_caffe {
 
 template <typename Dtype>
 void HDF5DataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
@@ -43,4 +43,4 @@ void HDF5DataLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
 
 INSTANTIATE_LAYER_GPU_FUNCS(HDF5DataLayer);
 
-}  // namespace caffe
+}  // namespace crfasrnn_caffe
